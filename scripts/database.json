@@ -1,0 +1,52 @@
+{
+    "events": [
+        {
+            "type": "internship",
+            "name": "Familie Redlich",
+            "start": "2012-07-01",
+            "end": "2012-10-31",
+            "description": "Lorem ipsum. Lorem ipsum."
+        },
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {
+            "type": "workplace",
+            "name": "Revvis Ltd.",
+            "start": "2018-06-01",
+            "end": "2022-12-31",
+            "description": "I was working as a software developer in a small team of 3 people. We were developing a web application for a company that provides a service for managing and monitoring the energy consumption of buildings. The application was written in PHP and JavaScript. I was responsible for the development of the backend part of the"
+        },
+        {
+            "type": "workplace",
+            "name": "iXtenda GmbH",
+            "start": "2022-08-01",
+            "end": "2023-02-28",
+            "description": "I was working as a technical artist in a small team of 6 people. We were developing multiple applications in C#. My main role was creating an UI design."
+        },
+        {
+            "type": "education",
+            "name": "Lessing Gymnasium Berlin",
+            "start": "2004-08-01",
+            "end": "2012-06-30",
+            "description": "I was studying at the Lessing Gymnasium Berlin."
+        },
+        {
+            "type": "education",
+            "name": "Berliner Hochschule für Technik (BHT)",
+            "start": "2013-10-01",
+            "end": "2019-06-30",
+            "description": "I was studying computer science at the University of Applied Sciences in Berlin. I was learning about the basics of computer science, algorithms, data structures, databases, operating systems, networks, software engineering, and many more."
+        },
+        {
+            "type": "education",
+            "name": "University of Applied Sciences in Berlin, Germany",
+            "start": "2020-04-01",
+            "end": "2022-07-01",
+            "description": "I was studying computer science at the University of Applied Sciences in Berlin. I was learning about the basics of computer science, algorithms, data structures, databases, operating systems, networks, software engineering, and many more."
+        }
+    ]
+}
