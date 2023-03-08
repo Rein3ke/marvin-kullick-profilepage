@@ -1,0 +1,58 @@
+$xs: 360px; // Extra small devices | Portrait phones (<34em : 22.5em)
+$sm: 544px; // Small devices | Landscape phones (≥34em)
+$md: 768px; // Medium devices | Tablets (≥48em)
+$lg: 992px; // Large devices | Desktops (≥62em)
+$xl: 1200px; // Extra large devices | Desktops (≥75em)
+$xxl: 1920px; // Mega large Desktops | Desktops (≥120em)
+
+// mixin from breakpoints
+@mixin mq($name) {
+    $breakpoints: (
+      xs: (max-width: $md - 1px),
+      sm: (min-width: $sm),
+      md: (min-width: $md),
+      lg: (min-width: $lg),
+      xl: (min-width: $xl),
+      xxl:(min-width: $xxl)
+    );
+    
+    // If the key exists in the map
+    @if map-has-key($breakpoints, $name) {
+        @media screen and #{inspect(map-get($breakpoints, $name))} {
+            @content;
+        }
+    }
+    // If the key doesn't exist in the map
+    @else {
+        @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. " + 
+            "Please make sure it is defined in `$breakpoints` map.";
+    }
+}
+
+$breakpoints: (
+  xs: $xs,
+  sm: $sm,
+  md: $md,
+  lg: $lg,
+  xl: $xl,
+  xxl: $xxl
+);
+
+@each $k, $v in $breakpoints {
+    .hidden-#{$k}-up {
+        @media screen and (min-width: $v) {
+            display: none;
+        }
+    }
+    .hidden-#{$k}-down {
+        @media screen and (max-width: $v - 1px) {
+            display: none;
+        }
+    }
+}
+
+.xxl {
+  @include mq(xxl) {
+    border: 1px solid red;
+  }
+}
