@@ -5,42 +5,63 @@
             "name": "Familie Redlich",
             "start": "2017-07-01",
             "end": "2017-10-31",
-            "description": "Lorem ipsum. Lorem ipsum."
+            "description": "During my studies at the Berlin University of Applied Sciences (BHT), I participated in an internship. In the agency Familie Redlich I learned to create websites and was able to work on my own website until the end. This website contained a memory game for children. The whole thing took place in the context of the S-Bahn Kids campaign.",
+            "location": "Berlin, Germany",
+            "url": "https://www.familie-redlich.de/"
+        },
+        {
+            "type": "workplace",
+            "name": "Akademie der Wissenschaften",
+            "start": "2017-11-01",
+            "end": "2018-05-31",
+            "description": "At the Academy of Sciences I was able to further deepen my knowledge in website design and development. I even participated in a project, which was nominated for and won the DARIAH DE DH Award 2018.",
+            "location": "Berlin, Germany",
+            "url": "https://www.bbaw.de/"
         },
         {
             "type": "workplace",
             "name": "Revvis Ltd.",
             "start": "2018-06-01",
             "end": "2022-12-31",
-            "description": "I was working as a software developer in a small team of 3 people. We were developing a web application for a company that provides a service for managing and monitoring the energy consumption of buildings. The application was written in PHP and JavaScript. I was responsible for the development of the backend part of the"
+            "description": "I was working as a software developer in a small team of 3 people. We were developing a web application for a company that provides a service for managing and monitoring the energy consumption of buildings. The application was written in PHP and JavaScript. I was responsible for the development of the backend part of the",
+            "location": "Berlin, Germany",
+            "url": "https://revvis.com/"
         },
         {
             "type": "workplace",
             "name": "iXtenda GmbH",
             "start": "2022-08-01",
             "end": "2023-02-28",
-            "description": "I was working as a technical artist in a small team of 6 people. We were developing multiple applications in C#. My main role was creating an UI design."
+            "description": "I was working as a technical artist in a small team of 6 people. We were developing multiple applications in C#. My main role was creating an UI design.",
+            "location": "Berlin, Germany",
+            "url": "https://www.ixtenda.com/"
         },
         {
             "type": "education",
-            "name": "Lessing Gymnasium Berlin",
+            "name": "Lessing Gymnasium",
             "start": "2004-08-01",
             "end": "2012-06-30",
-            "description": "I was studying at the Lessing Gymnasium Berlin."
+            "description": "I graduated from the Lessing Gymnasium in Berlin. I got my best grades in computer class and art.",
+            "location": "Berlin, Germany",
+            "url": "https://lessing-gymnasium-berlin.de/"
         },
         {
             "type": "education",
             "name": "Berliner Hochschule für Technik (BHT)",
             "start": "2013-10-01",
             "end": "2019-06-30",
-            "description": "I was studying computer science at the University of Applied Sciences in Berlin. I was learning about the basics of computer science, algorithms, data structures, databases, operating systems, networks, software engineering, and many more."
+            "description": "I started my media informatics studies at the Berlin University of Applied Sciences (BHT). There I learned the basics of Java, Git, app development (Android and iOS), software development, databases, UI/UX design and Unity.",
+            "location": "Berlin, Germany",
+            "url": "https://www.bht-berlin.de/"
         },
         {
             "type": "education",
             "name": "University of Applied Sciences in Berlin, Germany",
             "start": "2020-04-01",
             "end": "2022-07-01",
-            "description": "I was studying computer science at the University of Applied Sciences in Berlin. I was learning about the basics of computer science, algorithms, data structures, databases, operating systems, networks, software engineering, and many more."
+            "description": "I was studying computer science at the University of Applied Sciences in Berlin. I was learning about the basics of computer science, algorithms, data structures, databases, operating systems, networks, software engineering, and many more.",
+            "location": "Berlin, Germany",
+            "url": "https://www.htw-berlin.de/"
         }
     ]
 }

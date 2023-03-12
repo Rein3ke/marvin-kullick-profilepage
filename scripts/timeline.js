@@ -41,18 +41,31 @@ function drawTimeline() {
     // draw timeline
     events.forEach(eventData => {
         var eventElement = document.createElement("div");
+        eventElement.id = eventData.id;
+
         eventElement.className = `timeline-event ${getCssClassByEventType(eventData.type)}`;
+
         eventElement.innerHTML = `
             <span class="material-icons ${getCssClassByEventType(eventData.type)}">${getMaterialIconByEventType(eventData.type)}</span>
-            <p class="timeline-event-date">${getReadableDate(eventData)}</p>
-            <h2 id="${eventData.id}">${eventData.name}</h2>
-            <p>${eventData.description}</p>
-            <div id="${eventData.id}-toggleBox" class="timeline-event-togglebox">
+            <a class="timeline-event-link" href="${eventData.url}" target="_blank"><span class="material-icons">link</span></a>
+            <div class="timeline-event-content">
+                <p class="timeline-event-content-date">${getReadableDate(eventData)}, ${eventData.location}</p>
+                <h2>${eventData.name}</h2>
                 <p>${eventData.description}</p>
             </div>
-            <span id="${eventData.id}-toggleIcon" class="material-icons" onclick="toggleVisibility('${eventData.id}')">expand_more</span>
         `;
+
         timeline_events_element.appendChild(eventElement);
+
+        // if length of innerHTML is grater than 200px, append another span at the end
+        if (eventElement.innerHTML.length > 700) {
+            console.log(eventElement.innerHTML.length);
+            eventElement.innerHTML += `
+                <span id="${eventData.id}-toggleIcon" class="material-icons" onclick="toggleVisibility('${eventData.id}')">expand_more</span>
+            `;
+        } else {
+            eventElement.classList.add("not-expandable");
+        }
     });
 
     // draw legend
@@ -135,15 +148,15 @@ function getDateFromString(dateString) {
 }
 
 function toggleVisibility(eventId) {
-    var element = document.getElementById(`${eventId}-toggleBox`);
+    var eventElement = document.getElementById(eventId);
     var icon = document.getElementById(`${eventId}-toggleIcon`);
 
-    if (!element.classList.contains("visible")) {
-        element.classList.add("visible");
+    if (!eventElement.classList.contains("expanded") && !eventElement.classList.contains("not-expandable")) {
         icon.innerHTML = "expand_less";
+        eventElement.classList.add("expanded");
     } else {
-        element.classList.remove("visible");
         icon.innerHTML = "expand_more";
+        eventElement.classList.remove("expanded");
     }
 }
 

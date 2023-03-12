@@ -60,37 +60,63 @@ body {
 
         .timeline-event {
             position: relative;
-            display: flex;
-            flex-direction: column;
+
+            height: em(128);
 
             @include default-border-style();
             padding-bottom: em(32);
 
             color: $color-background;
 
-            h2 {
-                font-size: clamp(em(16), 1.5vw, em(24));
+            &.not-expandable {
+                height: fit-content;
+                padding-bottom: em(16);
+            }
+
+            &.expanded {
+                height: fit-content;
+            }
+
+            &-content {
+                height: 100%;
+                width: 100%;
+
+                display: flex;
+                flex-direction: column;
+
                 overflow: hidden;
-                white-space: nowrap;
-                text-overflow: ellipsis;
 
-                margin-bottom: em(4);
+                h2 {
+                    flex-shrink: 0;
+
+                    font-size: clamp(em(16), 1.5vw, em(24));
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+    
+                    margin-bottom: em(4);
+                }
+
+                p:not(.timeline-event-content-date) { // Description
+                    flex-shrink: 2;
+
+                    line-height: 1.4em;
+                    overflow: hidden;
+                }
+
+                &-date {
+                    flex-shrink: 0;
+
+                    font-size: em(14);
+                    font-weight: lighter;
+                }
             }
 
-            h3 {
-                font-size: em(16);
-                margin-bottom: em(2);
-            }
 
-            .timeline-event-date {
-                font-size: em(14);
-                font-weight: lighter;
-            }
-
-            .material-icons {
+            > span.material-icons {
                 user-select: none;
 
-                &:first-child {
+                &:first-child { // Event type icon
                     font-size: em(24);
                     position: absolute;
                     top: em(8);
@@ -101,7 +127,8 @@ body {
                     padding: em(8);
                     z-index: -1;
                 }
-                &:last-child {
+
+                &:last-child { // Collapse icon
                     cursor: pointer;
                     display: flex;
                     align-items: center;
@@ -110,22 +137,29 @@ body {
                     bottom: 0;
                     right: 0;
                     width: 100%;
+
+                    transition: all 0.2s ease-out;
+
+                    &:hover {
+                        background-color: #00000023;
+                        color: $color-primary;
+                    }
                 }
             }
 
-            .timeline-event-togglebox {
-                visibility: hidden;
-                overflow: hidden;
-                transition: transform 0.2s ease-in-out;
-                height: 0;
-                transform: scaleY(0);
-                transform-origin: top;
+            &-link {
+                z-index: 1;
+                user-select: none;
+                cursor: pointer;
 
-                &.visible {
-                    padding-top: em(16);
-                    height: fit-content;
-                    visibility: visible;
-                    transform: scaleY(1);
+                position: absolute;
+                top: em(8);
+                right: em(8);
+
+                color: $color-background;
+
+                &:hover {
+                    color: $color-primary;
                 }
             }
         }
