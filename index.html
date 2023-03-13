@@ -40,5 +40,24 @@
             </div>
         </div>
     </main>
+    <button id="scroll-to-top-button">
+        <span class="material-icons">arrow_upward</span>
+    </button>
 </body>
+<script>
+    const scrollToTopButton = document.getElementById('scroll-to-top-button');
+    const scrollFunc = () => {
+        let y = window.scrollY;
+        if (y > 0) {
+            scrollToTopButton.className = "visible";
+        } else {
+            scrollToTopButton.className = "hidden";
+        }
+    };
+    window.addEventListener("scroll", scrollFunc);
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+    scrollToTopButton.onclick = scrollToTop;
+</script>
 </html>
