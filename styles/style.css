@@ -131,6 +131,7 @@ body main {
   }
 }
 #identity-skills ul li {
+  flex: 1 1 min-content;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -141,11 +142,13 @@ body main {
   font-size: clamp(0.875em, 1.5vw, 1em);
   font-weight: bold;
   color: #2c363f;
+  white-space: nowrap;
   box-sizing: border-box;
 }
 @media screen and (max-width: 767px) {
   #identity-skills ul li {
     height: 2em;
+    font-weight: normal;
   }
 }
 #identity-skills ul li.level-beginner {

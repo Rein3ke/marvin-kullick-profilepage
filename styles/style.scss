@@ -80,6 +80,7 @@ body {
             }
 
             li {
+                flex: 1 1 min-content; // flex-grow: 1; flex-shrink: 1; flex-basis: 0;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -92,10 +93,12 @@ body {
                 font-size: clamp(em(14), 1.5vw, em(16));
                 font-weight: bold;
                 color: $color-background;
+                white-space: nowrap;
                 box-sizing: border-box;
 
                 @include mq (xs) {
                     height: em(32);
+                    font-weight: normal;
                 }
 
                 &.level {
