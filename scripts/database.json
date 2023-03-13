@@ -63,5 +63,107 @@
             "location": "Berlin, Germany",
             "url": "https://www.htw-berlin.de/"
         }
+    ],
+    "skills": [
+        {
+            "name": "HTML",
+            "level": "advanced"
+        },
+        {
+            "name": "CSS / SCSS",
+            "level": "advanced"
+        },
+        {
+            "name": "JavaScript",
+            "level": "moderate"
+        },
+        {
+            "name": "Unity Engine",
+            "level": "moderate"
+        },
+        {
+            "name": "C#",
+            "level": "moderate"
+        },
+        {
+            "name": "Java",
+            "level": "moderate"
+        },
+        {
+            "name": "Figma",
+            "level": "expert"
+        },
+        {
+            "name": "Adobe XD",
+            "level": "advanced"
+        },
+        {
+            "name": "VueJS",
+            "level": "beginner"
+        },
+        {
+            "name": "PHP",
+            "level": "beginner"
+        },
+        {
+            "name": "MySQL",
+            "level": "beginner"
+        },
+        {
+            "name": "Git",
+            "level": "moderate"
+        },
+        {
+            "name": "Adobe Photoshop",
+            "level": "beginner"
+        },
+        {
+            "name": "Adobe Illustrator",
+            "level": "beginner"
+        },
+        {
+            "name": "Blender",
+            "level": "moderate"
+        },
+        {
+            "name": "Python",
+            "level": "beginner"
+        },
+        {
+            "name": "ReactJS",
+            "level": "beginner"
+        },
+        {
+            "name": "AngularJS",
+            "level": "beginner"
+        },
+        {
+            "name": "NodeJS",
+            "level": "beginner"
+        },
+        {
+            "name": "MongoDB",
+            "level": "beginner"
+        },
+        {
+            "name": "Windows",
+            "level": "advanced"
+        },
+        {
+            "name": "macOS",
+            "level": "beginner"
+        },
+        {
+            "name": "Android",
+            "level": "beginner"
+        },
+        {
+            "name": "iOS",
+            "level": "beginner"
+        },
+        {
+            "name": "JSON",
+            "level": "advanced"
+        }
     ]
 }
