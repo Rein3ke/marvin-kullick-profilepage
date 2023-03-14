@@ -178,7 +178,7 @@ body main {
 #timeline {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 2em;
+  gap: 1em 2em;
   padding: 2em 0;
   position: relative;
 }
