@@ -39,26 +39,26 @@ body {
     background-color: $color-background;
 
     main { // mobile first
-        padding: em(16);
+        padding: em(32) em(16);
 
         @include mq (sm) {
-            padding: em(32);
+            padding: em(32) em(32);
         }
 
         @include mq (md) {
-            padding: em(96);
+            padding: em(32) em(96);
         }
 
         @include mq (lg) {
-            padding: em(96);
+            padding: em(32) em(96);
         }
 
         @include mq (xl) {
-            padding: em(0);
+            padding: em(32) em(0);
         }
 
         @include mq (xxl) {
-            padding: em(0);
+            padding: em(32) em(0);
         }
     }
 }
