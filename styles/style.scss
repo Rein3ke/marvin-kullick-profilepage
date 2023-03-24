@@ -24,7 +24,7 @@ $color-quaternary: #BBC7A4;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    transition: all 0.1s ease;
+    transition: all 0.3s ease-out;
 }
 
 body {
@@ -69,21 +69,26 @@ body {
     gap: em(32);
 
     &-content {
-        grid-column: 1 / 4;
-        grid-row: 1 / 2;
+        grid-column: 1 / 6;
+        grid-row: auto;
         display: flex;
         flex-direction: column;
         gap: em(8);
 
+        @include mq (sm) {
+            grid-column: 1 / 4;
+        }
+
         p {
             font-size: clamp(em(14), 1.5vw, em(18));
             line-height: 1.4em;
+            text-align: justify;
+            font-family: Arial, sans-serif; 
         }
     }
 
     &-skills {
         grid-column: 1 / 6;
-        grid-row: 2 / 3;
 
         display: flex;
         flex-direction: column;
@@ -106,7 +111,8 @@ body {
                 align-items: center;
 
                 height: em(48);
-                max-width: fit-content;
+                min-width: fit-content;
+                max-width: 40%;
 
                 background-color: $color-secondary;
                 padding: em(8) em(16);
@@ -171,8 +177,13 @@ body {
     }
 
     &-image {
-        grid-column: 4 / 6;
-        grid-row: 1 / 2;
+        grid-column: 1 / 6;
+        grid-row: 2 / 3;
+
+        @include mq (sm) {
+            grid-column: 4 / 6;
+            grid-row: 1 / 2;
+        }
 
         img {
             width: 100%;
@@ -418,6 +429,7 @@ body {
 
     @include mq (xs) {
         grid-column: 1 / 6;
+        grid-row: auto;
 
         position: static;
         transform: none;
