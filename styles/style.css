@@ -169,7 +169,7 @@ body main {
   height: 3em;
   min-width: -moz-fit-content;
   min-width: fit-content;
-  max-width: 40%;
+  max-width: 30%;
   background-color: #F2F5EA;
   padding: 0.5em 1em;
   border-radius: 0.5em;
@@ -186,7 +186,7 @@ body main {
   }
 }
 #identity-skills ul li.level-beginner {
-  background-image: linear-gradient(100deg, #D6DBD2, #D6DBD2 25%, #e3e6e0 25%, #e3e6e0 35%, #F2F5EA 35%, #F2F5EA);
+  background-image: linear-gradient(100deg, #BBC7A4, #BBC7A4 25%, #c7d1b4 25%, #c7d1b4 35%, #F2F5EA 35%, #F2F5EA);
 }
 #identity-skills ul li.level-moderate {
   background-image: linear-gradient(100deg, #BBC7A4, #BBC7A4 50%, #d3dac4 50%, #d3dac4 60%, #eaeee3 60%, #eaeee3 70%, #F2F5EA 70%, #F2F5EA);

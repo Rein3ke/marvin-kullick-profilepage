@@ -112,7 +112,7 @@ body {
 
                 height: em(48);
                 min-width: fit-content;
-                max-width: 40%;
+                max-width: 30%;
 
                 background-color: $color-secondary;
                 padding: em(8) em(16);
@@ -134,10 +134,10 @@ body {
                     &-beginner {
                         background-image: linear-gradient(
                             $rotation,
-                            $color-tertiary,
-                            $color-tertiary 25%,
-                            lighten($color-tertiary, 5%) 25%,
-                            lighten($color-tertiary, 5%) 35%,
+                            $color-quaternary,
+                            $color-quaternary 25%,
+                            lighten($color-quaternary, 5%) 25%,
+                            lighten($color-quaternary, 5%) 35%,
                             $color-secondary 35%,
                             $color-secondary
                         );
