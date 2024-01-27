@@ -37,6 +37,14 @@
             "url": "https://www.ixtenda.com/"
         },
         {
+            "type": "workplace",
+            "name": "Finmas GmbH",
+            "start": "2023-06-01",
+            "description": "At Finmas GmbH I was working as a UI/UX designer on multiple procets correlating to the Finanz Informatik, the IT service provider of the Sparkassen-Finanzgruppe. I was responsible for maintaining our own design system and creating new designs for our applications. Also I supported the development team with the implementation of the designs.",
+            "location": "Berlin, Germany",
+            "url": "https://www.finmas.de/"
+        },
+        {
             "type": "education",
             "name": "Lessing Gymnasium",
             "start": "2004-08-01",
