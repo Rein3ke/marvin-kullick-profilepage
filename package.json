@@ -1,0 +1,17 @@
+{
+  "name": "marvin-kullick-profilepage",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personal portfolio site",
+  "scripts": {
+    "dev": "concurrently \"npm run serve\" \"npm run watch:css\"",
+    "serve": "live-server --port=8080 --open=index.html",
+    "watch:css": "sass --watch styles/style.scss styles/style.css",
+    "build": "sass styles/style.scss styles/style.css --style=compressed"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1",
+    "live-server": "^1.2.2",
+    "sass": "^1.77.8"
+  }
+}
