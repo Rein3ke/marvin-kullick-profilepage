@@ -1,167 +1,185 @@
-// after website load create timeline based on database.json file
-// and add it to the page
+import { getEvents } from "./data.js";
 
-var database_path = "scripts/database.json";
+const timelineEventsElement = document.getElementById("timeline-events");
+const timelineLegendListElement = document.getElementById("timeline-legend-list");
 
-var timeline_element = document.getElementById("timeline");
-var timeline_events_element = document.getElementById("timeline-events");
-var timeline_legend_element = document.getElementById("timeline-legend");
-var timeline_legend_list_element = document.getElementById("timeline-legend-list");
-
-var events = [];
-
-function getEventById(id) {
-    return events.find(event => event.id == id);
-}
-
-function readDatabase() {
-    var request = new XMLHttpRequest();
-    request.open("GET", database_path, false);
-    request.send(null);
-    return request.responseText;
-}
-
-function createTimeline() {
-    var database = JSON.parse(readDatabase()).events;
-    for (var i = 0; i < database.length; i++) {
-        events.push(database[i]);
-        database[i].id = i;
-    }
-
-    // transform event dates to Date objects
-    events.forEach(eventData => {
-        eventData.start = getDateFromString(eventData.start);
-        eventData.end = getDateFromString(eventData.end);
-    });
-}
-
-function drawTimeline() {
-    if (events.length == 0) return; // guard clause - if there are no events, do nothing
-
-    // draw timeline
-    events.forEach(eventData => {
-        var eventElement = document.createElement("div");
-        eventElement.id = eventData.id;
-
-        eventElement.className = `timeline-event ${getCssClassByEventType(eventData.type)}`;
-
-        eventElement.innerHTML = `
-            <span class="material-icons ${getCssClassByEventType(eventData.type)}">${getMaterialIconByEventType(eventData.type)}</span>
-            <a class="timeline-event-link" href="${eventData.url}" target="_blank"><span class="material-icons">link</span></a>
-            <div class="timeline-event-content">
-                <p class="timeline-event-content-date">${getReadableDate(eventData)}, ${eventData.location}</p>
-                <h2>${eventData.name}</h2>
-                <p>${eventData.description}</p>
-            </div>
-        `;
-
-        timeline_events_element.appendChild(eventElement);
-
-        // if length of innerHTML is grater than 200px, append another span at the end
-        if (eventElement.innerHTML.length > 700) {
-            console.log(eventElement.innerHTML.length);
-            eventElement.innerHTML += `
-                <span id="${eventData.id}-toggleIcon" class="material-icons" onclick="toggleVisibility('${eventData.id}')">expand_more</span>
-            `;
-        } else {
-            eventElement.classList.add("not-expandable");
-        }
-    });
-
-    // draw legend
-    events.forEach(eventData => {
-        var legendElement = document.createElement("li");
-        legendElement.className = "timeline-legend-item";
-        legendElement.onclick = () => {
-            var element = document.getElementById(eventData.id);
-            element.scrollIntoView({ behavior: "smooth"});
-        };
-        legendElement.innerHTML = `
-            <span class="timeline-legend-item-date">${eventData.start.getFullYear()}</span>
-            <div class="timeline-legend-item-container">
-                <span class="material-icons">${getMaterialIconByEventType(eventData.type)}</span>
-                <span>${eventData.name}</span>
-            </div>
-        `;
-        timeline_legend_list_element.appendChild(legendElement);
-    });
-}
-
-// get material icon name by event type
 function getMaterialIconByEventType(type) {
-    switch (type) {
-        case "workplace":
-            return "work";
-        case "education":
-            return "school";
-        case "project":
-            return "code";
-        case "internship":
-            return "history_edu";
-        default:
-            return "event";
-    }
+	switch (type) {
+		case "workplace":
+			return "work";
+		case "education":
+			return "school";
+		case "project":
+			return "code";
+		case "internship":
+			return "history_edu";
+		default:
+			return "event";
+	}
 }
 
 function getCssClassByEventType(type) {
-    switch (type) {
-        case "workplace":
-            return "event-type--workplace";
-        case "education":
-            return "event-type--education";
-        case "project":
-            return "event-type--project";
-        case "internship":
-            return "event-type--internship";
-        default:
-            return "event-type";
-    }
+	switch (type) {
+		case "workplace":
+			return "event-type--workplace";
+		case "education":
+			return "event-type--education";
+		case "project":
+			return "event-type--project";
+		case "internship":
+			return "event-type--internship";
+		default:
+			return "event-type";
+	}
 }
 
-function sortTimelineEventsByStartDate() {
-    events.sort((a, b) => {
-        return a.start - b.start;
-    });
-}
-
-function sortTimelineEventsByEndDate() {
-    events.sort((a, b) => {
-        return a.end - b.end;
-    });
+function parseDate(dateString) {
+	if (!dateString) return null;
+	const date = new Date(dateString);
+	return Number.isNaN(date.getTime()) ? null : date;
 }
 
 function getReadableDate(event) {
-    switch (event.type) {
-        case "workplace":
-        case "education":
-            return `${event.start.getFullYear()} - ${event.end.getFullYear()}`;
-        case "internship":
-            return `${event.start.getFullYear()}`;
-        default:
-            break;
-    }
+	const startYear = event.start ? event.start.getFullYear() : "";
+	const endYear = event.end ? event.end.getFullYear() : "Heute";
+
+	switch (event.type) {
+		case "internship":
+			return startYear || "";
+		case "workplace":
+		case "education":
+			if (!startYear) return endYear || "";
+			return `${startYear} - ${endYear}`;
+		default:
+			if (startYear && endYear) {
+				return `${startYear} - ${endYear}`;
+			}
+			return startYear || endYear || "";
+	}
 }
 
-function getDateFromString(dateString) {
-    var date = new Date(dateString);
-    return date;
+function buildEventElement(event) {
+	const eventElement = document.createElement("div");
+	eventElement.id = event.id;
+	eventElement.className = `timeline-event ${event.cssClass}`;
+
+	const typeIcon = document.createElement("span");
+	typeIcon.className = `material-icons ${event.cssClass}`;
+	typeIcon.textContent = event.icon;
+	eventElement.appendChild(typeIcon);
+
+	if (event.url) {
+		const link = document.createElement("a");
+		link.className = "timeline-event-link";
+		link.href = event.url;
+		link.target = "_blank";
+		link.rel = "noopener noreferrer";
+		link.innerHTML = '<span class="material-icons">link</span>';
+		eventElement.appendChild(link);
+	}
+
+	const content = document.createElement("div");
+	content.className = "timeline-event-content";
+
+	const date = document.createElement("p");
+	date.className = "timeline-event-content-date";
+	const readableDate = getReadableDate(event);
+	date.textContent = readableDate ? `${readableDate}${event.location ? `, ${event.location}` : ""}` : event.location || "";
+
+	const title = document.createElement("h2");
+	title.textContent = event.name || "";
+
+	const description = document.createElement("p");
+	description.innerHTML = event.description || "";
+
+	content.appendChild(date);
+	content.appendChild(title);
+	content.appendChild(description);
+	eventElement.appendChild(content);
+
+	return { eventElement, content };
 }
 
-function toggleVisibility(eventId) {
-    var eventElement = document.getElementById(eventId);
-    var icon = document.getElementById(`${eventId}-toggleIcon`);
+const TOGGLE_HEIGHT_THRESHOLD_PX = 200;
 
-    if (!eventElement.classList.contains("expanded") && !eventElement.classList.contains("not-expandable")) {
-        icon.innerHTML = "expand_less";
-        eventElement.classList.add("expanded");
-    } else {
-        icon.innerHTML = "expand_more";
-        eventElement.classList.remove("expanded");
-    }
+function getExpandedHeight(eventElement) {
+	const previousHeight = eventElement.style.height;
+	eventElement.style.height = "auto";
+	const expandedHeight = eventElement.scrollHeight;
+	eventElement.style.height = previousHeight;
+	return expandedHeight;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    createTimeline();
-    sortTimelineEventsByStartDate();
-    drawTimeline();
-});
+function addOverflowToggle(eventElement, eventId) {
+	const expandedHeight = getExpandedHeight(eventElement);
+	const isOverflowing = expandedHeight > TOGGLE_HEIGHT_THRESHOLD_PX;
+	if (!isOverflowing) {
+		eventElement.classList.add("not-expandable");
+		return;
+	}
+
+	const toggleIcon = document.createElement("span");
+	toggleIcon.id = `${eventId}-toggleIcon`;
+	toggleIcon.className = "material-icons";
+	toggleIcon.textContent = "expand_more";
+	toggleIcon.addEventListener("click", () => {
+		const isExpanded = eventElement.classList.toggle("expanded");
+		toggleIcon.textContent = isExpanded ? "expand_less" : "expand_more";
+	});
+
+	eventElement.appendChild(toggleIcon);
+}
+
+function renderTimeline(events) {
+	events.forEach((event) => {
+		const { eventElement, content } = buildEventElement(event);
+		timelineEventsElement.appendChild(eventElement);
+		addOverflowToggle(eventElement, event.id);
+	});
+}
+
+function renderLegend(events) {
+	events.forEach((event) => {
+		const legendElement = document.createElement("li");
+		legendElement.className = "timeline-legend-item";
+		legendElement.addEventListener("click", () => {
+			const element = document.getElementById(event.id);
+			if (element) {
+				element.scrollIntoView({ behavior: "smooth" });
+			}
+		});
+		legendElement.innerHTML = `
+            <span class="timeline-legend-item-date">${event.start ? event.start.getFullYear() : ""}</span>
+            <div class="timeline-legend-item-container">
+                <span class="material-icons">${event.icon}</span>
+                <span>${event.name}</span>
+            </div>
+        `;
+		timelineLegendListElement.appendChild(legendElement);
+	});
+}
+
+export async function initTimeline() {
+	if (!timelineEventsElement || !timelineLegendListElement) return;
+
+	const rawEvents = await getEvents();
+	if (rawEvents.length === 0) return;
+
+	const events = rawEvents.map((event, index) => ({
+		...event,
+		id: `event-${index}`,
+		start: parseDate(event.start),
+		end: parseDate(event.end),
+		icon: getMaterialIconByEventType(event.type),
+		cssClass: getCssClassByEventType(event.type),
+	}));
+
+	events.sort((a, b) => {
+		const aTime = a.start ? a.start.getTime() : Number.POSITIVE_INFINITY;
+		const bTime = b.start ? b.start.getTime() : Number.POSITIVE_INFINITY;
+		return aTime - bTime;
+	});
+
+	renderTimeline(events);
+	renderLegend(events);
+}
