@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use 'sass:math';
 @use 'breakpoints' as *;
 
@@ -16,7 +17,7 @@ $color-quaternary: #BBC7A4;
 
 @mixin default-border-style() {
     border-radius: em(8);
-    box-shadow: em(4) em(4) 0 darken($color-background, 5%);
+    box-shadow: em(4) em(4) 0 color.adjust($color-background, $lightness: -5%);
     padding: em(16);
 }
 
@@ -24,7 +25,12 @@ $color-quaternary: #BBC7A4;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    transition: all 0.3s ease-out;
+}
+
+// Explicit transitions for interactive elements
+.timeline-event-link,
+.timeline-legend-item {
+    transition: color 0.2s ease-out, background-color 0.2s ease-out;
 }
 
 body {
@@ -136,8 +142,8 @@ body {
                             $rotation,
                             $color-quaternary,
                             $color-quaternary 25%,
-                            lighten($color-quaternary, 5%) 25%,
-                            lighten($color-quaternary, 5%) 35%,
+                            color.adjust($color-quaternary, $lightness: 5%) 25%,
+                            color.adjust($color-quaternary, $lightness: 5%) 35%,
                             $color-secondary 35%,
                             $color-secondary
                         );
@@ -147,10 +153,10 @@ body {
                             $rotation,
                             $color-quaternary,
                             $color-quaternary 50%,
-                            lighten($color-quaternary, 10%) 50%,
-                            lighten($color-quaternary, 10%) 60%,
-                            lighten($color-quaternary, 20%) 60%,
-                            lighten($color-quaternary, 20%) 70%,
+                            color.adjust($color-quaternary, $lightness: 10%) 50%,
+                            color.adjust($color-quaternary, $lightness: 10%) 60%,
+                            color.adjust($color-quaternary, $lightness: 20%) 60%,
+                            color.adjust($color-quaternary, $lightness: 20%) 70%,
                             $color-secondary 70%,
                             $color-secondary
                         );
@@ -160,10 +166,10 @@ body {
                             $rotation,
                             $color-quaternary,
                             $color-quaternary 55%,
-                            lighten($color-quaternary, 10%) 55%,
-                            lighten($color-quaternary, 10%) 70%,
-                            lighten($color-quaternary, 20%) 70%,
-                            lighten($color-quaternary, 20%) 85%,
+                            color.adjust($color-quaternary, $lightness: 10%) 55%,
+                            color.adjust($color-quaternary, $lightness: 10%) 70%,
+                            color.adjust($color-quaternary, $lightness: 20%) 70%,
+                            color.adjust($color-quaternary, $lightness: 20%) 85%,
                             $color-secondary 85%,
                             $color-secondary
                         );
@@ -277,7 +283,7 @@ body {
                     left: em(-31);
                     border: 1px solid #000;
                     border-radius: em(8) 0 0 em(8);
-                    box-shadow: em(2) em(2) 0 darken($color-background, 5%);
+                    box-shadow: em(2) em(2) 0 color.adjust($color-background, $lightness: -5%);
                     padding: em(8);
                     z-index: -1;
 

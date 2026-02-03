@@ -1,3 +1,6 @@
+@use 'sass:map';
+@use 'sass:meta';
+
 $xs: 360px; // Extra small devices | Portrait phones (<34em : 22.5em)
 $sm: 544px; // Small devices | Landscape phones (≥34em)
 $md: 768px; // Medium devices | Tablets (≥48em)
@@ -17,8 +20,8 @@ $xxl: 1920px; // Mega large Desktops | Desktops (≥120em)
     );
     
     // If the key exists in the map
-    @if map-has-key($breakpoints, $name) {
-        @media screen and #{inspect(map-get($breakpoints, $name))} {
+    @if map.has-key($breakpoints, $name) {
+        @media screen and #{meta.inspect(map.get($breakpoints, $name))} {
             @content;
         }
     }
